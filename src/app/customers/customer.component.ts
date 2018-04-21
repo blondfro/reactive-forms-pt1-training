@@ -1,13 +1,16 @@
 import {Component, OnInit} from '@angular/core';
-import {FormGroup, FormBuilder, Validators, AbstractControl} from '@angular/forms';
+import {FormGroup, FormBuilder, Validators, AbstractControl, ValidatorFn} from '@angular/forms';
 import { Customer } from './customer';
 
-function ratingRange(c: AbstractControl): {[key: string]: boolean} | null {
-    if (c.value != undefined && (isNaN(c.value) || c.value < 1 || c.value > 5)) {
-        return {'range': true};
+function ratingRange(min: number, max: number): ValidatorFn {
+    return (c: AbstractControl): {[key: string]: boolean} | null => {
+        if (c.value !== undefined && (isNaN(c.value) || c.value < min || c.value > max)) {
+            return {'range': true};
+        }
+        return null;
     }
-    return null;
 }
+
 
 @Component({
     selector: 'my-signup',
@@ -28,7 +31,7 @@ export class CustomerComponent implements OnInit {
                 .pattern('[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+')]],
             phone: '',
             notification: 'email',
-            rating: ['', ratingRange],
+            rating: ['', ratingRange(1, 5)],
             sendCatalog: '',
         });
     }
