@@ -20,9 +20,7 @@
                         <input class="form-control" 
                                id="firstNameId" 
                                type="text" 
-                               placeholder="First Name (required)" 
-                               required 
-                               minlength="3"
+                               placeholder="First Name (required)"
                                formControlName="firstName"/>
                         <span class="help-block" *ngIf="
                         (customerForm.get('firstName').touched ||
@@ -50,9 +48,7 @@
                         <input class="form-control" 
                                id="lastNameId" 
                                type="text" 
-                               placeholder="Last Name (required)" 
-                               required 
-                               maxlength="50"
+                               placeholder="Last Name (required)"
                                formControlName="lastName"/>
                         <span class="help-block" *ngIf="(customerForm.get('lastName').touched || 
                         customerForm.get('lastName').dirty) && 
