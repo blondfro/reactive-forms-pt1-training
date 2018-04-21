@@ -84,14 +84,20 @@ export class CustomerComponent implements OnInit {
         });
     }
 
+    addAddress(): void {
+        this.addresses.push(this.buildAddress());
+    }
+
     buildAddress(): FormGroup {
         return this.fb.group({
             addressType: 'home',
-            street1: '',
-            street2: '',
-            city: '',
-            state: '',
-            zip: ''
+            street1: ['', [Validators.required, Validators.minLength(3)]],
+            street2: ['', [Validators.minLength(3)]],
+            city: ['', [Validators.required, Validators.minLength(3)]],
+            state: ['', Validators.required],
+            zip: ['', [Validators.required,
+                Validators.minLength(7),
+                Validators.maxLength(7)]]
         });
     }
 
