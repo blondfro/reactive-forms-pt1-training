@@ -68,10 +68,7 @@
                 <div formGroupName="emailGroup"
                         [ngClass]="{'has-error': customerForm.get('emailGroup').errors}">
                     <div class="form-group"
-                        [ngClass]="{'has-error': (
-                        customerForm.get('emailGroup.email').touched ||
-                        customerForm.get('emailGroup.email').dirty) &&
-                        !customerForm.get('emailGroup.email').valid }">
+                        [ngClass]="{'has-error': emailMessage}">
                         <label class="col-md-2 control-label"
                             for="emailId">Email</label>
 
@@ -82,15 +79,8 @@
                                    placeholder="Email (required)"
                                    formControlName="email" />
                             <span class="help-block"
-                                  *ngIf="(customerForm.get('emailGroup.email').touched ||
-                                    customerForm.get('emailGroup.email').dirty) &&
-                                    customerForm.get('emailGroup.email').errors">
-                                <span *ngIf="customerForm.get('emailGroup.email').errors.required">
-                                    Please enter your email address.
-                                </span>
-                                <span *ngIf="customerForm.get('emailGroup.email').errors.pattern">
-                                    Please enter a valid email address.
-                                </span>
+                                  *ngIf="emailMessage">
+                                {{ emailMessage }}
 
                                 <!-- This one does not work -->
                                 <span *ngIf="customerForm.get('emailGroup.email').errors.email">
@@ -260,20 +250,20 @@
                         <label class="radio-inline">
                             <input type="radio"
                                    value="email"
-                                   formControlName="notification"
-                                   (click)="setNotification('email')">
+                                   formControlName="notification">
                             Email
                         </label>
                         <label class="radio-inline">
                             <input type="radio"
                                    value="text"
-                                   formControlName="notification"
-                                   (click)="setNotification('text')">
+                                   formControlName="notification">
                             Text
                         </label>
                     </div>
                 </div>
 
+
+                <!-- rating section of the form -->
                 <div class="form-group"
                      [ngClass]="{'has-error': (customerForm.get('rating').touched ||
                                                 customerForm.get('rating').dirty) &&
