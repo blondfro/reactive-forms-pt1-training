@@ -58,7 +58,8 @@ export class CustomerComponent implements OnInit {
             phone: '',
             notification: 'email',
             rating: ['', ratingRange(1, 5)],
-            sendCatalog: '',
+            sendCatalog: true,
+            addresses: this.buildAddress(),
         });
 
         this.customerForm.get('notification').valueChanges
@@ -75,6 +76,17 @@ export class CustomerComponent implements OnInit {
             lastName: 'Harkness',
             email: 'jack@torchwood.com',
             sendCatalog: false
+        });
+    }
+
+    buildAddress(): FormGroup {
+        return this.fb.group({
+            addressType: 'home',
+            street1: '',
+            street2: '',
+            city: '',
+            state: '',
+            zip: ''
         });
     }
 
@@ -100,4 +112,6 @@ export class CustomerComponent implements OnInit {
                 .map(key => this.validationMessages[key]).join(' ');
         }
     }
+
+
  }
