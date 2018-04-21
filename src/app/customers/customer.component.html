@@ -82,10 +82,6 @@
                                   *ngIf="emailMessage">
                                 {{ emailMessage }}
 
-                                <!-- This one does not work -->
-                                <span *ngIf="customerForm.get('emailGroup.email').errors.email">
-                                    Please enter a valid email address.
-                                </span>
                             </span>
                         </div>
                     </div>
